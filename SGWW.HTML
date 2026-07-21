@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silly Goose Woodworking</title>
+  <style>
+    /* Base Styles & Theme */
+    :root {
+      --bg-color: #fcfbf9;
+      --card-bg: #ffffff;
+      --text-main: #2c2523;
+      --text-muted: #665c58;
+      --accent-color: #8c4a27; /* Warm wood tone */
+      --accent-hover: #6a371c;
+      --border-color: #e5dfd9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    .btn-etsy {
+      background-color: #f1641e; /* Etsy Brand Orange */
+      color: #ffffff !important;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .btn-etsy:hover {
+      background-color: #d8520f;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    /* Main Container */
+    container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: block;
+    }
+
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-image-placeholder {
+      width: 100%;
+      height: 250px;
+      background-color: #e2ded9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+    }
+
+    .product-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-info h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .product-info p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      text-align: center;
+      background-color: var(--accent-color);
+      color: #ffffff;
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    button[type="submit"] {
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#" class="logo">Silly Goose Woodworking</a>
+      <ul class="nav-links">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#custom">Custom Orders</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="https://www.etsy.com" target="_blank" rel="noopener" class="btn-etsy">Etsy Shop ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Handcrafted Custom Woodworking</h1>
+    <p>Unique pieces built to order. Browse current listings on Etsy or submit a custom request below.</p>
+  </div>
+
+  <container>
+    <!-- Product Showcase -->
+    <section id="products">
+      <h2>Featured Works</h2>
+      <div class="product-grid">
+        
+        <!-- Product Card 1 -->
+        <div class="product-card">
+          <div class="product-image-placeholder">
+            [ Replace with Image: img/product1.jpg ]
+          </div>
+          <div class="product-info">
+            <h3>Product Name 1</h3>
+            <p>Detailed description of the handmade item, materials used, dimensions, and craftsmanship details.</p>
+            <a href="https://www.etsy.com" target="_blank" rel="noopener" class="btn-primary">View on Etsy</a>
+          </div>
+        </div>
+
+        <!-- Product Card 2 -->
+        <div class="product-card">
+          <div class="product-image-placeholder">
+            [ Replace with Image: img/product2.jpg ]
+          </div>
+          <div class="product-info">
+            <h3>Product Name 2</h3>
+            <p>Detailed description of the handmade item, materials used, dimensions, and craftsmanship details.</p>
+            <a href="https://www.etsy.com" target="_blank" rel="noopener" class="btn-primary">View on Etsy</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Custom Work Inquiry -->
+    <section id="custom">
+      <h2>Request Custom Work</h2>
+      <!-- Note: Update action URL to your free Formspree or EmailJS endpoint -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="details">Project Details / Ideas</label>
+          <textarea id="details" name="details" placeholder="Describe what you'd like built, estimated dimensions, preferred wood types, etc." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Send Inquiry</button>
+      </form>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>About the Shop</h2>
+      <p style="max-width: 700px; margin: 0 auto; text-align: center; color: var(--text-muted);">
+        Brief backstory about Silly Goose Woodworking, your workshop setup, design philosophy, or the types of materials you specialize in.
+      </p>
+    </section>
+  </container>
+
+  <footer>
+    <p>&copy; Silly Goose Woodworking. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
