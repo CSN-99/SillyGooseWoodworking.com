@@ -83,12 +83,12 @@
       gap: 1rem;
     }
 
-    /* Constrained logo dimension with circle crop */
+    /* Header Logo Image Styling: Constrained dimensions prevent huge renders */
     .logo-img {
       width: 52px;
       height: 52px;
       object-fit: cover;
-      border-radius: 50%;
+      border-radius: 50%; /* Rounded crop to match circular badge profile */
       flex-shrink: 0;
       border: 1px solid var(--border-color);
     }
@@ -237,64 +237,9 @@
       margin-top: 0.5rem;
     }
 
-    /* =================================================================
-       ABOUT SECTION
+/* =================================================================
+       CAROUSEL / SLIDER STYLES
     ================================================================== */
-    .about-card {
-      background-color: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 2.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--text-muted);
-    }
-
-    .about-card strong {
-      color: var(--text-main);
-    }
-
-    /* =================================================================
-       COLLECTION / CARDS & GALLERY SLIDER
-    ================================================================== */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background-color: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-    }
-
-    /* Standard Card Image Wrapper */
-    .card-img-wrapper {
-      position: relative;
-      width: 100%;
-      height: 240px;
-      background-color: #f0f0f0;
-    }
-
-    .card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Multi-Image Carousel Component */
     .carousel {
       position: relative;
       width: 100%;
@@ -326,6 +271,7 @@
       pointer-events: auto;
     }
 
+    /* Carousel Navigation Buttons */
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -357,6 +303,62 @@
 
     .next-btn {
       right: 10px;
+    }
+
+    /* =================================================================
+       ABOUT SECTION
+    ================================================================== */
+    .about-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    .about-card strong {
+      color: var(--text-main);
+    }
+
+    /* =================================================================
+       COLLECTION / CARDS
+    ================================================================== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-img-wrapper {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      background-color: #f0f0f0;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .card-body {
@@ -536,7 +538,7 @@
   <header>
     <nav class="navbar">
       <a href="#" class="brand-link">
-        <!-- Master Logo Image from GitHub Repo -->
+        <!-- Brand Logo: Linked directly to repository image file -->
         <img 
           src="https://raw.githubusercontent.com/CSN-99/SillyGooseWoodworking.com/refs/heads/main/SillyGooseLogo_Master.jpg" 
           alt="Silly Goose Woodworking Logo" 
@@ -549,7 +551,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#collection">Collection</a></li>
         <li><a href="#contact">Contact</a></li>
-        <!-- INSTRUCTION: Update href when your Etsy store URL is active -->
+        <!-- INSTRUCTION: Update this link with your actual Etsy URL when ready -->
         <li><a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-etsy btn-sm">Etsy Shop (Coming Soon)</a></li>
       </ul>
     </nav>
@@ -595,25 +597,29 @@
 
       <div class="grid">
 
-        <!-- =================================================================
+        <!-- <!-- =================================================================
              ITEM 1: WOODEN LANTERNS (CAROUSEL / GALLERY)
-             - Automatically rotates every 15 seconds.
-             - Navigable via Prev/Next arrows.
-             - Add more <img> elements inside .carousel-track to expand.
+             - Auto-rotates every 15 seconds.
+             - Includes Next / Prev navigation buttons.
+             - Add more <img> tags inside .carousel-track to expand the gallery.
         ================================================================== -->
         <article class="card">
           <div class="carousel" data-interval="15000">
             <div class="carousel-track">
+              <!-- Slide 1 -->
               <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_1.jpg?raw=true" 
-                   alt="Custom Wooden Lantern - Front View" 
+                   alt="Custom Wooden Lantern - View 1" 
                    class="carousel-slide active" 
                    onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
 
+              <!-- Slide 2 -->
               <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_2.jpg?raw=true" 
-                   alt="Custom Wooden Lantern - Illuminated View" 
+                   alt="Custom Wooden Lantern - View 2" 
                    class="carousel-slide" 
                    onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
             </div>
+
+            <!-- Navigation Controls -->
             <button type="button" class="carousel-btn prev-btn" aria-label="Previous Slide">&lsaquo;</button>
             <button type="button" class="carousel-btn next-btn" aria-label="Next Slide">&rsaquo;</button>
           </div>
@@ -629,6 +635,7 @@
             </div>
             <div class="card-actions">
               <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
+              <!-- INSTRUCTION: Add direct Etsy product link once available -->
               <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
             </div>
           </div>
@@ -636,6 +643,7 @@
 
         <!-- =================================================================
              ITEM 2: COASTERS
+             To update the image, replace the 'src' link below.
         ================================================================== -->
         <article class="card">
           <div class="card-img-wrapper">
@@ -660,19 +668,20 @@
         </article>
 
         <!-- =================================================================
-             ITEM 3: JEWELRY & DICE BOXES
+             TEMPLATE: ADDING A NEW CARD
+             Copy and paste this card block directly to add more items to your grid.
         ================================================================== -->
+        <!-- 
         <article class="card">
           <div class="card-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1584589167171-541ce45f1eea?auto=format&fit=crop&w=600&q=80" alt="Jewelry and Dice Box" class="card-img">
+            <img src="YOUR_IMAGE_URL_HERE" alt="Item Title" class="card-img">
           </div>
           <div class="card-body">
-            <h3 class="card-title">3. Jewelry &amp; Dice Boxes</h3>
-            <p class="card-text">Beautifully constructed wooden keepsake boxes featuring custom hardware accents and velvet interior options. Ideal for dice sets, jewelry, or cherished treasures.</p>
+            <h3 class="card-title">3. New Item Title</h3>
+            <p class="card-text">Item description goes here.</p>
             <div class="tag-container">
-              <span class="tag">Keepsake</span>
-              <span class="tag">D&amp;D Dice Box</span>
-              <span class="tag">Hardware Accents</span>
+              <span class="tag">Tag 1</span>
+              <span class="tag">Tag 2</span>
             </div>
             <div class="card-actions">
               <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
@@ -680,53 +689,7 @@
             </div>
           </div>
         </article>
-
-        <!-- =================================================================
-             ITEM 4: TABLET & BOOK STANDS
-        ================================================================== -->
-        <article class="card">
-          <div class="card-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" alt="Tablet and Book Stand" class="card-img">
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">4. Tablet &amp; Book Stands</h3>
-            <p class="card-text">Functional, handcrafted wooden stands designed for tablets, recipe books, and display items. Blends practical utility with natural wood grain aesthetics.</p>
-            <div class="tag-container">
-              <span class="tag">Functional</span>
-              <span class="tag">Tablet Stand</span>
-              <span class="tag">Recipe Holder</span>
-            </div>
-            <div class="card-actions">
-              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
-              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- =================================================================
-             ITEM 5: TABLETOP RPG ACCESSORIES & DM SCREENS
-        ================================================================== -->
-        <article class="card">
-          <div class="card-img-wrapper">
-            <img src="https://drive.google.com/thumbnail?id=1N5MF3kEbpHnO-WhdOmxSHS-EU2Z5vTK_&sz=w800" 
-                 alt="DM Screen Design" 
-                 class="card-img" 
-                 onerror="this.src='https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80'">
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">5. D&amp;D &amp; Tabletop RPG Accessories</h3>
-            <p class="card-text">Custom multi-panel Dungeon Master screens, token sets, and gaming accessories tailored specifically for tabletop roleplaying enthusiasts.</p>
-            <div class="tag-container">
-              <span class="tag">D&amp;D 5e</span>
-              <span class="tag">DM Screen</span>
-              <span class="tag">Custom Laser Cut</span>
-            </div>
-            <div class="card-actions">
-              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
-              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
-            </div>
-          </div>
-        </article>
+        -->
 
       </div>
     </section>
@@ -741,7 +704,11 @@
       <div class="contact-wrapper">
         <div class="contact-info">
           <h3>Let's build something unique.</h3>
-          <p>Have an idea for a custom set of lantern faceplates, personalized coasters, or a laser-engraved gift? Fill out the form or click below to start an email with your project details and attachments.</p>
+          <p>Have an idea for a custom set of lantern faceplates, personalized coasters, or a laser-engraved gift? Send a note and let's bring it to life.
+<br>
+<br>
+Don't worry about attaching images or pictures yet, we'll reach out to you with follow up questions and make sure that we understand your needs first.
+</p>
           
           <ul class="info-list">
             <li>
@@ -759,11 +726,15 @@
             </li>
           </ul>
 
-          <a href="mailto:sillygoosewoodworking@gmail.com?subject=Custom%20Order%20Inquiry%20(with%20Attachments)" class="btn btn-secondary">Open Default Mail App</a>
+          <a href="mailto:sillygoosewoodworking@gmail.com" class="btn btn-secondary">Open Default Mail App</a>
         </div>
 
-        <!-- Interactive Contact Form with Dynamic Subject and Body Construction -->
-        <form class="contact-form" id="contactForm">
+        <!-- HTML Form Setup
+             For GitHub Pages hosting, static forms cannot send mail directly without a backend service.
+             You can use Formspree (https://formspree.io) by changing action to your endpoint:
+             action="https://formspree.io/f/YOUR_ENDPOINT_HERE"
+        -->
+<form class="contact-form" id="contactForm">
           <div>
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Jane Doe" required>
@@ -773,12 +744,13 @@
             <input type="email" id="email" name="email" placeholder="jane@example.com" required>
           </div>
           <div>
+            <!-- Dedicated Subject Line Field -->
             <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" placeholder="Custom Lantern Order / General Inquiry" required>
+            <input type="text" id="subject" name="subject" placeholder="Custom Order / General Inquiry" required>
           </div>
           <div>
             <label for="message">Project Details</label>
-            <textarea id="message" name="message" placeholder="Describe your design, wood preference, lantern style, etc..." required></textarea>
+            <textarea id="message" name="message" placeholder="Describe your design, wood preference, or question..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
         </form>
@@ -791,14 +763,11 @@
        FOOTER
   ================================================================== -->
   <footer>
-    <p>&copy; 2026 Silly Goose Woodworking. All rights reserved. | Handcrafted in Chicago, IL</p>
+    <p>&copy; 2026 Silly Goose Woodworking. All rights reserved. Handcrafted &amp; Laser Engraved.</p>
   </footer>
 
-  <!-- =================================================================
-       SCRIPTS: CAROUSEL TIMERS & CONTACT FORM HANDLER
-  ================================================================== -->
-  <script>
-    // 1. CAROUSEL AUTO-SLIDER & CONTROLS
+<script>
+    // Handles multi-slide image carousels with timed auto-advance and manual controls
     document.querySelectorAll('.carousel').forEach(carousel => {
       const slides = carousel.querySelectorAll('.carousel-slide');
       const prevBtn = carousel.querySelector('.prev-btn');
@@ -833,10 +802,11 @@
         if (timer) clearInterval(timer);
       }
 
+      // Button listeners
       if (nextBtn) {
         nextBtn.addEventListener('click', () => {
           nextSlide();
-          startAutoTimer();
+          startAutoTimer(); // Resets the 15s timer on manual interaction
         });
       }
 
@@ -847,35 +817,20 @@
         });
       }
 
+      // Initialize
       if (slides.length > 0) {
         showSlide(0);
         if (slides.length > 1) {
           startAutoTimer();
         } else {
+          // Hide controls if only 1 image exists
           if (prevBtn) prevBtn.style.display = 'none';
           if (nextBtn) nextBtn.style.display = 'none';
         }
       }
     });
-
-    // 2. CONTACT FORM SUBJECT & EMAIL GENERATOR
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const subject = document.getElementById('subject').value.trim();
-        const message = document.getElementById('message').value.trim();
-
-        const bodyContent = `Name: ${name}\nEmail: ${email}\n\nProject Details:\n${message}\n\n(Attach any reference images or sketches to this email before sending)`;
-        const mailtoUrl = `mailto:sillygoosewoodworking@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyContent)}`;
-
-        window.location.href = mailtoUrl;
-      });
-    }
   </script>
+
 
 </body>
 </html>
