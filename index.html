@@ -1,507 +1,881 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silly Goose Woodworking | Handcrafted Woodwork & Laser Engravings</title>
-    <meta name="description" content="Handcrafted wooden lanterns, interchangeable faceplates, custom coasters, dice boxes, and laser engravings by Silly Goose Woodworking.">
-    <style>
-        :root {
-            --primary: #4a2c11;
-            --primary-dark: #2d1908;
-            --accent: #d97724;
-            --accent-hover: #b85e13;
-            --bg-light: #fdfbf7;
-            --bg-card: #ffffff;
-            --text-main: #2b2520;
-            --text-muted: #665b52;
-            --border: #e6ded6;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silly Goose Woodworking | Handcrafted Woodwork & Laser Engravings</title>
+  <meta name="description" content="Handcrafted wooden lanterns, interchangeable faceplates, custom coasters, dice boxes, and laser engravings by Silly Goose Woodworking.">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <!-- =================================================================
+       FONTS (Space Grotesk + Plus Jakarta Sans)
+  ================================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-main);
-            background-color: var(--bg-light);
-            line-height: 1.6;
-        }
+  <style>
+    /* =================================================================
+       STYLE GUIDE DESIGN TOKENS
+       Adjust brand colors, font rules, and spacing here.
+    ================================================================== */
+    :root {
+      --bg-primary: #fafafa;
+      --bg-secondary: #ffffff;
+      --text-main: #111111;
+      --text-muted: #666666;
+      --accent-wood: #d4a373;        /* Warm Timber Accent */
+      --accent-wood-hover: #c39262;  /* Darker Timber for hover states */
+      --border-color: #e5e5e5;
+      
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        a:hover {
-            color: var(--accent-hover);
-        }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
 
-        /* Header & Navigation */
-        header {
-            background-color: var(--primary-dark);
-            color: #ffffff;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
 
-        .navbar {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    /* =================================================================
+       NAVIGATION & HEADER
+    ================================================================== */
+    header {
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+    .navbar {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+    }
 
-        .nav-links a {
-            color: #e6ded6;
-            font-weight: 500;
-        }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
 
-        .nav-links a:hover {
-            color: var(--accent);
-        }
+    /* Constrained logo dimension with circle crop */
+    .logo-img {
+      width: 52px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid var(--border-color);
+    }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(45, 25, 8, 0.75), rgba(45, 25, 8, 0.75)), url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-            color: #ffffff;
-            text-align: center;
-            padding: 6rem 2rem;
-        }
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    .brand-name span {
+      color: var(--accent-wood);
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 1.5rem;
+    }
 
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            color: #f3ece7;
-        }
+    .nav-links a {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
 
-        .btn-primary {
-            background-color: var(--accent);
-            color: #ffffff;
-            border: none;
-        }
+    /* =================================================================
+       BUTTONS
+    ================================================================== */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
 
-        .btn-primary:hover {
-            background-color: var(--accent-hover);
-            color: #ffffff;
-        }
+    .btn-primary {
+      background-color: var(--text-main);
+      color: var(--bg-secondary) !important;
+    }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: #ffffff;
-            border: 2px solid #ffffff;
-            margin-left: 1rem;
-        }
+    .btn-primary:hover {
+      background-color: var(--accent-wood);
+      border-color: var(--accent-wood);
+    }
 
-        .btn-secondary:hover {
-            background-color: #ffffff;
-            color: var(--primary-dark);
-        }
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-main) !important;
+      border: 1px solid var(--text-main);
+    }
 
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
+    .btn-secondary:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
 
-        section {
-            margin-bottom: 4rem;
-        }
+    .btn-outline-etsy {
+      background-color: transparent;
+      color: var(--accent-wood) !important;
+      border: 1px solid var(--accent-wood);
+    }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.25rem;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            position: relative;
-        }
+    .btn-outline-etsy:hover {
+      background-color: var(--accent-wood);
+      color: #ffffff !important;
+    }
 
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
+    .btn-sm {
+      padding: 0.45rem 0.9rem;
+      font-size: 0.85rem;
+    }
 
-        /* About Section */
-        .about-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    /* =================================================================
+       HERO SECTION
+    ================================================================== */
+    .hero {
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
 
-        .about-card p {
-            font-size: 1.15rem;
-            color: var(--text-main);
-            line-height: 1.8;
-        }
+    .hero-content {
+      max-width: 780px;
+      margin: 0 auto;
+    }
 
-        /* Collection Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
 
-        .card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            flex-direction: column;
-        }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
-        .card-img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            background-color: #f0eae1;
-        }
+    /* =================================================================
+       SECTION HEADINGS
+    ================================================================== */
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
 
-        .card-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      border-bottom: 2px solid var(--text-main);
+      display: inline-block;
+      padding-bottom: 0.35rem;
+      margin-bottom: 0.5rem;
+    }
 
-        .card-title {
-            font-size: 1.35rem;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-        }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
 
-        .card-text {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
+    /* =================================================================
+       ABOUT SECTION
+    ================================================================== */
+    .about-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
 
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: auto;
-        }
+    .about-card strong {
+      color: var(--text-main);
+    }
 
-        .tag {
-            background-color: #f3ece7;
-            color: var(--primary);
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
+    /* =================================================================
+       COLLECTION / CARDS & GALLERY SLIDER
+    ================================================================== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
 
-        /* Contact & Inquiry Section */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
+    .card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .contact-info h3 {
-            font-size: 1.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-        }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    }
 
-        .contact-info p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
+    /* Standard Card Image Wrapper */
+    .card-img-wrapper {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      background-color: #f0f0f0;
+    }
 
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            font-size: 1.05rem;
-        }
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-        .contact-form label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
+    /* Multi-Image Carousel Component */
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
 
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            margin-bottom: 1.25rem;
-            font-family: inherit;
-            font-size: 1rem;
-        }
+    .carousel-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
 
-        .contact-form textarea {
-            resize: vertical;
-            height: 120px;
-        }
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      pointer-events: none;
+    }
 
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(217, 119, 36, 0.15);
-        }
+    .carousel-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-        /* Footer */
-        footer {
-            background-color: var(--primary-dark);
-            color: #a89a8e;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(17, 17, 17, 0.6);
+      color: #ffffff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      z-index: 2;
+    }
 
-        footer p {
-            font-size: 0.9rem;
-        }
+    .carousel-btn:hover {
+      background-color: rgba(17, 17, 17, 0.9);
+      transform: translateY(-50%) scale(1.1);
+    }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-            .btn-secondary {
-                margin-left: 0;
-                margin-top: 1rem;
-            }
-        }
-    </style>
+    .prev-btn {
+      left: 10px;
+    }
+
+    .next-btn {
+      right: 10px;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .card-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag {
+      background-color: #f0f0f0;
+      color: var(--text-muted);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    /* =================================================================
+       CONTACT SECTION & FORM
+    ================================================================== */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-list li {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .info-value {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .info-value a:hover {
+      color: var(--accent-wood);
+    }
+
+    .contact-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+      color: var(--text-main);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent-wood);
+      background-color: var(--bg-secondary);
+    }
+
+    .contact-form textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    /* =================================================================
+       FOOTER
+    ================================================================== */
+    footer {
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header & Navigation -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">🪿 Silly Goose Woodworking</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#collection">Collection</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- =================================================================
+       HEADER / NAVIGATION
+  ================================================================== -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="brand-link">
+        <!-- Master Logo Image from GitHub Repo -->
+        <img 
+          src="https://raw.githubusercontent.com/CSN-99/SillyGooseWoodworking.com/refs/heads/main/SillyGooseLogo_Master.jpg" 
+          alt="Silly Goose Woodworking Logo" 
+          class="logo-img"
+        >
+        <div class="brand-name">Silly Goose<br><span>Woodworking</span></div>
+      </a>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Handcrafted Woodwork, Custom Lanterns & Laser Engravings</h1>
-            <p>Artisan-crafted wooden lanterns with interchangeable faceplates, custom coasters, dice boxes, and laser engravings built with precision and care.</p>
-            <div>
-                <a href="#collection" class="btn btn-primary">View Collection</a>
-                <a href="#contact" class="btn btn-secondary">Request Custom Order</a>
-            </div>
-        </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <!-- INSTRUCTION: Update href when your Etsy store URL is active -->
+        <li><a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-etsy btn-sm">Etsy Shop (Coming Soon)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =================================================================
+       HERO SECTION
+  ================================================================== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Handcrafted Woodwork, Custom Lanterns &amp; Laser Engravings</h1>
+      <p>Artisan-crafted wooden lanterns with interchangeable faceplates, custom coasters, dice boxes, and laser engravings built with precision and care.</p>
+      <div class="hero-actions">
+        <a href="#collection" class="btn btn-primary">View Collection</a>
+        <a href="#contact" class="btn btn-secondary">Request Custom Order</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       MAIN CONTENT CONTAINER
+  ================================================================== -->
+  <main class="container">
+
+    <!-- ABOUT SECTION -->
+    <section id="about" style="margin-bottom: 4rem;">
+      <div class="section-header">
+        <h2 class="section-title">01. About Silly Goose Woodworking</h2>
+      </div>
+      <div class="about-card">
+        <p>Welcome to <strong>Silly Goose Woodworking</strong>! We specialize in handcrafted wooden lanterns, featuring seasonal and custom interchangeable faceplates. We also craft home decor, custom coasters, gift card ornaments, and boxes for keepsakes or any occasion. Every piece is crafted with care, combining quality woodworking with precision laser cutting and engraving. We would love to make something for you!</p>
+        <br>
+        <p>Custom orders are handled through email, while our suite of standard products is available through our Etsy shop.</p>
+      </div>
     </section>
 
-    <!-- Main Content -->
-    <div class="container">
+    <!-- COLLECTION SECTION -->
+    <section id="collection" style="margin-bottom: 4rem;">
+      <div class="section-header">
+        <h2 class="section-title">02. Handcrafted Collection</h2>
+        <p class="section-subtitle">Browse our signature handcrafted items and custom laser designs.</p>
+      </div>
 
-        <!-- About Section -->
-        <section id="about">
-            <h2 class="section-title">About Silly Goose Woodworking</h2>
-            <div class="about-card">
-                <p>Welcome to Silly Goose Woodworking! We specialize in handcrafted wooden lanterns, seasonal and custom interchangeable faceplates, coasters, tablet stands, and custom boxes. Every piece is crafted with care, combining quality woodworking with precision laser cutting and engraving.</p>
+      <div class="grid">
+
+        <!-- =================================================================
+             ITEM 1: WOODEN LANTERNS (CAROUSEL / GALLERY)
+             - Automatically rotates every 15 seconds.
+             - Navigable via Prev/Next arrows.
+             - Add more <img> elements inside .carousel-track to expand.
+        ================================================================== -->
+        <article class="card">
+          <div class="carousel" data-interval="15000">
+            <div class="carousel-track">
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_1.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - Front View" 
+                   class="carousel-slide active" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_2.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - Illuminated View" 
+                   class="carousel-slide" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
             </div>
-        </section>
+            <button type="button" class="carousel-btn prev-btn" aria-label="Previous Slide">&lsaquo;</button>
+            <button type="button" class="carousel-btn next-btn" aria-label="Next Slide">&rsaquo;</button>
+          </div>
 
-        <!-- Collection Section -->
-        <section id="collection">
-            <h2 class="section-title">Handcrafted Collection</h2>
-            <p class="section-subtitle">Browse our signature handcrafted items and custom laser designs.</p>
-
-            <div class="grid">
-                <!-- Item 1: Wooden Lanterns -->
-                <div class="card">
-                    <img src="https://drive.google.com/thumbnail?id=10IU7DZhFSRmgkavq5T6JYBAiBpjsCRak&sz=w800" alt="Custom Wooden Lantern" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
-                    <div class="card-body">
-                        <h3 class="card-title">1. Custom Wooden Lanterns & Faceplates</h3>
-                        <p class="card-text">Our signature wooden lanterns feature interchangeable faceplates for every occasion. Choose from Halloween, Christmas, Easter, and D&D / Tabletop RPG themes, or request your own custom theme!</p>
-                        <div class="card-tags">
-                            <span class="tag">Halloween</span>
-                            <span class="tag">Christmas</span>
-                            <span class="tag">Tabletop RPG</span>
-                            <span class="tag">Custom</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 2: Coasters -->
-                <div class="card">
-                    <img src="https://drive.google.com/thumbnail?id=1e-A3GqbvdPxwlsXPtDu2WuS9bfnYWLIw&sz=w800" alt="Custom Coasters" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=600&q=80'">
-                    <div class="card-body">
-                        <h3 class="card-title">2. Custom Engraved Coasters</h3>
-                        <p class="card-text">Handcrafted coaster 4-packs made from premium hardwoods with detailed laser engraving and durable protective finishes. Perfect for gifts or personal collections.</p>
-                        <div class="card-tags">
-                            <span class="tag">Hardwood</span>
-                            <span class="tag">Laser Engraved</span>
-                            <span class="tag">Set of 4</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3: Jewelry & Dice Boxes -->
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1584589167171-541ce45f1eea?auto=format&fit=crop&w=600&q=80" alt="Jewelry and Dice Box" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">3. Jewelry & Dice Boxes</h3>
-                        <p class="card-text">Beautifully constructed wooden keepsake boxes featuring custom hardware accents and velvet interior options. Ideal for dice sets, jewelry, or cherished treasures.</p>
-                        <div class="card-tags">
-                            <span class="tag">Keepsake</span>
-                            <span class="tag">D&D Dice Box</span>
-                            <span class="tag">Hardware Accents</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 4: Tablet & Book Stands -->
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" alt="Tablet and Book Stand" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title">4. Tablet & Book Stands</h3>
-                        <p class="card-text">Functional, handcrafted wooden stands designed for tablets, recipe books, and display items. Blends practical utility with natural wood grain aesthetics.</p>
-                        <div class="card-tags">
-                            <span class="tag">Functional</span>
-                            <span class="tag">Tablet Stand</span>
-                            <span class="tag">Recipe Holder</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 5: Tabletop RPG & DM Screens -->
-                <div class="card">
-                    <img src="https://drive.google.com/thumbnail?id=1N5MF3kEbpHnO-WhdOmxSHS-EU2Z5vTK_&sz=w800" alt="DM Screen Design" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80'">
-                    <div class="card-body">
-                        <h3 class="card-title">5. D&D & Tabletop RPG Accessories</h3>
-                        <p class="card-text">Custom multi-panel Dungeon Master screens, token sets, and gaming accessories tailored specifically for tabletop roleplaying enthusiasts.</p>
-                        <div class="card-tags">
-                            <span class="tag">D&D 5e</span>
-                            <span class="tag">DM Screen</span>
-                            <span class="tag">Custom Laser Cut</span>
-                        </div>
-                    </div>
-                </div>
+          <div class="card-body">
+            <h3 class="card-title">1. Custom Wooden Lanterns &amp; Faceplates</h3>
+            <p class="card-text">Our signature wooden lanterns feature interchangeable faceplates for every occasion. Choose from Halloween, Christmas, Easter, and D&amp;D / Tabletop RPG themes, or request your own custom theme!</p>
+            <div class="tag-container">
+              <span class="tag">Halloween</span>
+              <span class="tag">Christmas</span>
+              <span class="tag">Tabletop RPG</span>
+              <span class="tag">Custom</span>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2 class="section-title">How to Order / Get in Touch</h2>
-            <p class="section-subtitle">Interested in purchasing a handcrafted piece or requesting a custom design?</p>
-
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p>Send us a note with your idea, required dimensions, or desired theme, and we will respond with pricing and availability.</p>
-                    <div class="contact-detail">
-                        <span>📧</span> <strong>Email:</strong> <a href="mailto:SillyGooseWoodworking@gmail.com">SillyGooseWoodworking@gmail.com</a>
-                    </div>
-                    <div class="contact-detail">
-                        <span>🌐</span> <strong>Website:</strong> sillygoosewoodworking.com
-                    </div>
-                    <div class="contact-detail">
-                        <span>🎨</span> <strong>Custom Orders:</strong> Available upon request
-                    </div>
-                </div>
-
-                <div class="contact-form">
-                    <form action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                        <input type="hidden" name="subject" value="New Custom Order Inquiry - Silly Goose Woodworking">
-
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" placeholder="John Doe" required>
-
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
-
-                        <label for="message">Project Details / Custom Request</label>
-                        <textarea id="message" name="message" placeholder="Describe your custom idea, desired wood, dimensions, or theme..." required></textarea>
-
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                    </form>
-                </div>
+            <div class="card-actions">
+              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
+              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
             </div>
-        </section>
+          </div>
+        </article>
 
-    </div>
+        <!-- =================================================================
+             ITEM 2: COASTERS
+        ================================================================== -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <img src="https://drive.google.com/thumbnail?id=1e-A3GqbvdPxwlsXPtDu2WuS9bfnYWLIw&sz=w800" 
+                 alt="Custom Coasters" 
+                 class="card-img" 
+                 onerror="this.src='https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=600&q=80'">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">2. Custom Engraved Coasters</h3>
+            <p class="card-text">Handcrafted coaster 4-packs made from premium hardwoods with detailed laser engraving and durable protective finishes. Perfect for gifts or personal collections.</p>
+            <div class="tag-container">
+              <span class="tag">Hardwood</span>
+              <span class="tag">Laser Engraved</span>
+              <span class="tag">Set of 4</span>
+            </div>
+            <div class="card-actions">
+              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
+              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
+            </div>
+          </div>
+        </article>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Silly Goose Woodworking. All rights reserved. | Handcrafted in Chicago, IL</p>
-    </footer>
+        <!-- =================================================================
+             ITEM 3: JEWELRY & DICE BOXES
+        ================================================================== -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1584589167171-541ce45f1eea?auto=format&fit=crop&w=600&q=80" alt="Jewelry and Dice Box" class="card-img">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">3. Jewelry &amp; Dice Boxes</h3>
+            <p class="card-text">Beautifully constructed wooden keepsake boxes featuring custom hardware accents and velvet interior options. Ideal for dice sets, jewelry, or cherished treasures.</p>
+            <div class="tag-container">
+              <span class="tag">Keepsake</span>
+              <span class="tag">D&amp;D Dice Box</span>
+              <span class="tag">Hardware Accents</span>
+            </div>
+            <div class="card-actions">
+              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
+              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- =================================================================
+             ITEM 4: TABLET & BOOK STANDS
+        ================================================================== -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" alt="Tablet and Book Stand" class="card-img">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">4. Tablet &amp; Book Stands</h3>
+            <p class="card-text">Functional, handcrafted wooden stands designed for tablets, recipe books, and display items. Blends practical utility with natural wood grain aesthetics.</p>
+            <div class="tag-container">
+              <span class="tag">Functional</span>
+              <span class="tag">Tablet Stand</span>
+              <span class="tag">Recipe Holder</span>
+            </div>
+            <div class="card-actions">
+              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
+              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- =================================================================
+             ITEM 5: TABLETOP RPG ACCESSORIES & DM SCREENS
+        ================================================================== -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <img src="https://drive.google.com/thumbnail?id=1N5MF3kEbpHnO-WhdOmxSHS-EU2Z5vTK_&sz=w800" 
+                 alt="DM Screen Design" 
+                 class="card-img" 
+                 onerror="this.src='https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80'">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">5. D&amp;D &amp; Tabletop RPG Accessories</h3>
+            <p class="card-text">Custom multi-panel Dungeon Master screens, token sets, and gaming accessories tailored specifically for tabletop roleplaying enthusiasts.</p>
+            <div class="tag-container">
+              <span class="tag">D&amp;D 5e</span>
+              <span class="tag">DM Screen</span>
+              <span class="tag">Custom Laser Cut</span>
+            </div>
+            <div class="card-actions">
+              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
+              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACT & ORDER INQUIRIES -->
+    <section id="contact">
+      <div class="section-header">
+        <h2 class="section-title">03. Contact &amp; Custom Orders</h2>
+        <p class="section-subtitle">Reach out directly for custom requests, inquiries, or quotes.</p>
+      </div>
+
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Let's build something unique.</h3>
+          <p>Have an idea for a custom set of lantern faceplates, personalized coasters, or a laser-engraved gift? Fill out the form or click below to start an email with your project details and attachments.</p>
+          
+          <ul class="info-list">
+            <li>
+              <span class="info-label">Direct Email</span>
+              <span class="info-value">
+                <a href="mailto:sillygoosewoodworking@gmail.com">sillygoosewoodworking@gmail.com</a>
+              </span>
+            </li>
+            <li>
+              <span class="info-label">Online Store</span>
+              <span class="info-value">
+                <!-- INSTRUCTION: Replace href with your actual Etsy shop link when published -->
+                <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer">Etsy Storefront (Coming Soon) &rarr;</a>
+              </span>
+            </li>
+          </ul>
+
+          <a href="mailto:sillygoosewoodworking@gmail.com?subject=Custom%20Order%20Inquiry%20(with%20Attachments)" class="btn btn-secondary">Open Default Mail App</a>
+        </div>
+
+        <!-- Interactive Contact Form with Dynamic Subject and Body Construction -->
+        <form class="contact-form" id="contactForm">
+          <div>
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+          </div>
+          <div>
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+          </div>
+          <div>
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Custom Lantern Order / General Inquiry" required>
+          </div>
+          <div>
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" placeholder="Describe your design, wood preference, lantern style, etc..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =================================================================
+       FOOTER
+  ================================================================== -->
+  <footer>
+    <p>&copy; 2026 Silly Goose Woodworking. All rights reserved. | Handcrafted in Chicago, IL</p>
+  </footer>
+
+  <!-- =================================================================
+       SCRIPTS: CAROUSEL TIMERS & CONTACT FORM HANDLER
+  ================================================================== -->
+  <script>
+    // 1. CAROUSEL AUTO-SLIDER & CONTROLS
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const prevBtn = carousel.querySelector('.prev-btn');
+      const nextBtn = carousel.querySelector('.next-btn');
+      const intervalTime = parseInt(carousel.dataset.interval, 10) || 15000;
+      let currentIndex = 0;
+      let timer = null;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        currentIndex = index;
+      }
+
+      function nextSlide() {
+        const nextIndex = (currentIndex + 1) % slides.length;
+        showSlide(nextIndex);
+      }
+
+      function prevSlide() {
+        const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(prevIndex);
+      }
+
+      function startAutoTimer() {
+        stopAutoTimer();
+        timer = setInterval(nextSlide, intervalTime);
+      }
+
+      function stopAutoTimer() {
+        if (timer) clearInterval(timer);
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          nextSlide();
+          startAutoTimer();
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          prevSlide();
+          startAutoTimer();
+        });
+      }
+
+      if (slides.length > 0) {
+        showSlide(0);
+        if (slides.length > 1) {
+          startAutoTimer();
+        } else {
+          if (prevBtn) prevBtn.style.display = 'none';
+          if (nextBtn) nextBtn.style.display = 'none';
+        }
+      }
+    });
+
+    // 2. CONTACT FORM SUBJECT & EMAIL GENERATOR
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        const bodyContent = `Name: ${name}\nEmail: ${email}\n\nProject Details:\n${message}\n\n(Attach any reference images or sketches to this email before sending)`;
+        const mailtoUrl = `mailto:sillygoosewoodworking@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyContent)}`;
+
+        window.location.href = mailtoUrl;
+      });
+    }
+  </script>
 
 </body>
 </html>
