@@ -74,7 +74,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
+      padding: 0.75rem 1.5rem;
     }
 
     .brand-link {
@@ -83,10 +83,14 @@
       gap: 1rem;
     }
 
-    .logo-svg {
+    /* Header Logo Image Styling: Constrained dimensions prevent huge renders */
+    .logo-img {
       width: 52px;
       height: 52px;
+      object-fit: cover;
+      border-radius: 50%; /* Rounded crop to match circular badge profile */
       flex-shrink: 0;
+      border: 1px solid var(--border-color);
     }
 
     .brand-name {
@@ -231,6 +235,74 @@
       color: var(--text-muted);
       font-size: 1rem;
       margin-top: 0.5rem;
+    }
+
+/* =================================================================
+       CAROUSEL / SLIDER STYLES
+    ================================================================== */
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      pointer-events: none;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Carousel Navigation Buttons */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(17, 17, 17, 0.6);
+      color: #ffffff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      z-index: 2;
+    }
+
+    .carousel-btn:hover {
+      background-color: rgba(17, 17, 17, 0.9);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev-btn {
+      left: 10px;
+    }
+
+    .next-btn {
+      right: 10px;
     }
 
     /* =================================================================
@@ -466,24 +538,12 @@
   <header>
     <nav class="navbar">
       <a href="#" class="brand-link">
-        <!-- Reconstructed Vector Logo Mark -->
-        <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="95" fill="none" stroke="#111111" stroke-width="4"/>
-          <circle cx="100" cy="100" r="82" fill="none" stroke="#111111" stroke-width="1.5"/>
-          <circle cx="100" cy="100" r="54" fill="none" stroke="#111111" stroke-width="1.5"/>
-          <path d="M75,115 C75,100 85,75 105,75 C115,75 125,82 130,90 C132,95 125,98 120,96 C110,92 92,100 88,105 C85,108 95,110 102,112 C108,114 112,122 110,135 C108,145 92,160 85,165" fill="none" stroke="#111111" stroke-width="4" stroke-linecap="round"/>
-          <path d="M88,74 L122,71 L126,45 L92,48 Z" fill="#111111"/>
-          <path d="M80,75 L130,71" stroke="#111111" stroke-width="5" stroke-linecap="round"/>
-          <circle cx="106" cy="88" r="4" fill="#111111"/>
-          <path id="textPathTop" d="M 24,100 A 76,76 0 0,1 176,100" fill="none" />
-          <path id="textPathBottom" d="M 176,100 A 76,76 0 0,1 24,100" fill="none" />
-          <text font-family="'Space Grotesk', sans-serif" font-size="16.5" font-weight="700" fill="#111111" letter-spacing="3.5">
-            <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">SILLY GOOSE</textPath>
-          </text>
-          <text font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="700" fill="#111111" letter-spacing="4">
-            <textPath href="#textPathBottom" startOffset="50%" text-anchor="middle">WOODWORKING</textPath>
-          </text>
-        </svg>
+        <!-- Brand Logo: Linked directly to repository image file -->
+        <img 
+          src="https://raw.githubusercontent.com/CSN-99/SillyGooseWoodworking.com/refs/heads/main/SillyGooseLogo_Master.jpg" 
+          alt="Silly Goose Woodworking Logo" 
+          class="logo-img"
+        >
         <div class="brand-name">Silly Goose<br><span>Woodworking</span></div>
       </a>
 
@@ -522,9 +582,9 @@
         <h2 class="section-title">01. About Silly Goose Woodworking</h2>
       </div>
       <div class="about-card">
-        <p>Welcome to <strong>Silly Goose Woodworking</strong>! ! We specialize in handcrafted wooden lanterns, featuring seasonal and custom interchangeable faceplates. We also craft home decor, custom coasters, gift card ornaments, boxes for keepsakes or any occasion. Every piece is crafted with care, combining quality woodworking with precision laser cutting and engraving.  We would love to make something for you!</p>
-<br>   
-<p>Custom orders are handled through email, while our suite of standard products is available through our ETSY shop</p>
+        <p>Welcome to <strong>Silly Goose Woodworking</strong>! We specialize in handcrafted wooden lanterns, featuring seasonal and custom interchangeable faceplates. We also craft home decor, custom coasters, gift card ornaments, and boxes for keepsakes or any occasion. Every piece is crafted with care, combining quality woodworking with precision laser cutting and engraving. We would love to make something for you!</p>
+        <br>
+        <p>Custom orders are handled through email, while our suite of standard products is available through our Etsy shop.</p>
       </div>
     </section>
 
@@ -537,20 +597,41 @@
 
       <div class="grid">
 
-        <!-- =================================================================
-             ITEM 1: WOODEN LANTERNS
-             To update the image, replace the 'src' link below.
+        <!-- <!-- =================================================================
+             ITEM 1: WOODEN LANTERNS (CAROUSEL / GALLERY)
+             - Auto-rotates every 15 seconds.
+             - Includes Next / Prev navigation buttons.
+             - Add more <img> tags inside .carousel-track to expand the gallery.
         ================================================================== -->
         <article class="card">
-          <div class="card-img-wrapper">
-            <img src="https://drive.google.com/thumbnail?id=10IU7DZhFSRmgkavq5T6JYBAiBpjsCRak&sz=w800" 
-                 alt="Custom Wooden Lantern" 
-                 class="card-img" 
-                 onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+          <div class="carousel" data-interval="15000">
+            <div class="carousel-track">
+              <!-- Slide 1 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_1.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - View 1" 
+                   class="carousel-slide active" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+
+              <!-- Slide 2 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_2.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - View 2" 
+                   class="carousel-slide" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+            </div>
+
+            <!-- Navigation Controls -->
+            <button type="button" class="carousel-btn prev-btn" aria-label="Previous Slide">&lsaquo;</button>
+            <button type="button" class="carousel-btn next-btn" aria-label="Next Slide">&rsaquo;</button>
           </div>
+
           <div class="card-body">
             <h3 class="card-title">1. Custom Wooden Lanterns &amp; Faceplates</h3>
-            <p class="card-text">Our signature wooden lanterns feature interchangeable faceplates for every occasion. Choose from Halloween, Christmas, Easter, and D&amp;D / Tabletop RPG themes, or request your own custom theme!</p>
+            <p class="card-text">Our signature wooden lanterns feature interchangeable faceplates for every occasion.
+            <br>
+            <br>We ship seasonally approprate themes by default, but if you're looking for something different or want to get ahead of the holidays, reach out though the contact form below!
+            <br>
+            <br><B>Current Season: Halloween!  Ships with Ghost, Jack O'Lantern, Witch on Broom</B>
+            </p>
             <div class="tag-container">
               <span class="tag">Halloween</span>
               <span class="tag">Christmas</span>
@@ -565,8 +646,55 @@
           </div>
         </article>
 
+
+        <!-- <!-- =================================================================
+             ITEM 2: WOODEN LANTERNS FACEPLATES (CAROUSEL / GALLERY)
+             - Auto-rotates every 15 seconds.
+             - Includes Next / Prev navigation buttons.
+             - Add more <img> tags inside .carousel-track to expand the gallery.
+        ================================================================== -->
+        <article class="card">
+          <div class="carousel" data-interval="15000">
+            <div class="carousel-track">
+              <!-- Slide 1 -->
+              <img src="TBD"
+                   alt="Custom Wooden Lantern - View 1" 
+                   class="carousel-slide active" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+
+              <!-- Slide 2 -->
+              <img src="TBD"
+                   alt="Custom Wooden Lantern - View 2" 
+                   class="carousel-slide" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+            </div>
+
+            <!-- Navigation Controls -->
+            <button type="button" class="carousel-btn prev-btn" aria-label="Previous Slide">&lsaquo;</button>
+            <button type="button" class="carousel-btn next-btn" aria-label="Next Slide">&rsaquo;</button>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-title">2. Custom Wooden Lantern Faceplace Packages</h3>
+            <p class="card-text"> We ship with seasonally approprate packs when purchasing lanterns, but offer additional packages to extend your use and enjoyment!
+            Choose from Halloween, Christmas, Easter, and D&amp;D themes, or request your own custom theme!</p>
+            <div class="tag-container">
+              <span class="tag">Halloween</span>
+              <span class="tag">Christmas</span>
+              <span class="tag">Tabletop RPG</span>
+              <span class="tag">Custom</span>
+            </div>
+            <div class="card-actions">
+              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
+              <!-- INSTRUCTION: Add direct Etsy product link once available -->
+              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
+            </div>
+          </div>
+        </article>
+
+
         <!-- =================================================================
-             ITEM 2: COASTERS
+             ITEM 3: COASTERS
              To update the image, replace the 'src' link below.
         ================================================================== -->
         <article class="card">
@@ -577,15 +705,87 @@
                  onerror="this.src='https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=600&q=80'">
           </div>
           <div class="card-body">
-            <h3 class="card-title">2. Custom Engraved Coasters</h3>
+            <h3 class="card-title">3. Custom Engraved Coasters</h3>
             <p class="card-text">Handcrafted coaster 4-packs made from premium hardwoods with detailed laser engraving and durable protective finishes. Perfect for gifts or personal collections.</p>
             <div class="tag-container">
-              <span class="tag">Hardwood</span>
               <span class="tag">Laser Engraved</span>
               <span class="tag">Set of 4</span>
             </div>
             <div class="card-actions">
               <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
+              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
+            </div>
+          </div>
+        </article>
+
+ <!-- <!-- =================================================================
+             ITEM 99: CUSTOM GALLERY (CAROUSEL / GALLERY)
+             - Auto-rotates every 15 seconds.
+             - Includes Next / Prev navigation buttons.
+             - Add more <img> tags inside .carousel-track to expand the gallery.
+        ================================================================== -->
+        <article class="card">
+          <div class="carousel" data-interval="15000">
+            <div class="carousel-track">
+              <!-- Slide 1 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_1.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - View 1" 
+                   class="carousel-slide active" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+
+              <!-- Slide 2 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_2.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - View 2" 
+                   class="carousel-slide" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+            
+            <!-- Slide 3 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_1.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - View 1" 
+                   class="carousel-slide active" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+
+              <!-- Slide 4 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_2.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - View 2" 
+                   class="carousel-slide" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+
+              <!-- Slide 5 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_1.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - View 1" 
+                   class="carousel-slide active" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+
+              <!-- Slide 6 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_2.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - View 2" 
+                   class="carousel-slide" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">            
+            </div>
+
+            <!-- Navigation Controls -->
+            <button type="button" class="carousel-btn prev-btn" aria-label="Previous Slide">&lsaquo;</button>
+            <button type="button" class="carousel-btn next-btn" aria-label="Next Slide">&rsaquo;</button>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-title">1. Custom Wooden Lanterns &amp; Faceplates</h3>
+            <p class="card-text">Our signature wooden lanterns feature interchangeable faceplates for every occasion.
+            <br>
+            <br>We ship seasonally approprate themes by default, but if you're looking for something different or want to get ahead of the holidays, reach out though the contact form below!
+            <br>
+            <br><B>Current Season: Halloween!  Ships with Ghost, Jack O'Lantern, Witch on Broom</B>
+            </p>
+            <div class="tag-container">
+              <span class="tag">Halloween</span>
+              <span class="tag">Christmas</span>
+              <span class="tag">Tabletop RPG</span>
+              <span class="tag">Custom</span>
+            </div>
+            <div class="card-actions">
+              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
+              <!-- INSTRUCTION: Add direct Etsy product link once available -->
               <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
             </div>
           </div>
@@ -618,6 +818,8 @@
       </div>
     </section>
 
+
+
     <!-- CONTACT & ORDER INQUIRIES -->
     <section id="contact">
       <div class="section-header">
@@ -628,7 +830,11 @@
       <div class="contact-wrapper">
         <div class="contact-info">
           <h3>Let's build something unique.</h3>
-          <p>Have an idea for a custom set of lantern faceplates, personalized coasters, or a laser-engraved gift? Send a note and let's bring it to life.</p>
+          <p>Have an idea for a custom set of lantern faceplates, personalized coasters, or a laser-engraved gift? Send a note and let's bring it to life.
+<br>
+<br>
+Don't worry about attaching images or pictures yet, we'll reach out to you with follow up questions and make sure that we understand your needs first.
+</p>
           
           <ul class="info-list">
             <li>
@@ -654,7 +860,7 @@
              You can use Formspree (https://formspree.io) by changing action to your endpoint:
              action="https://formspree.io/f/YOUR_ENDPOINT_HERE"
         -->
-        <form class="contact-form" action="mailto:sillygoosewoodworking@gmail.com" method="POST" enctype="text/plain">
+<form class="contact-form" id="contactForm">
           <div>
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Jane Doe" required>
@@ -664,8 +870,13 @@
             <input type="email" id="email" name="email" placeholder="jane@example.com" required>
           </div>
           <div>
+            <!-- Dedicated Subject Line Field -->
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Custom Order / General Inquiry" required>
+          </div>
+          <div>
             <label for="message">Project Details</label>
-            <textarea id="message" name="message" placeholder="Describe what you would like made..." required></textarea>
+            <textarea id="message" name="message" placeholder="Describe your design, wood preference, or question..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
         </form>
@@ -680,6 +891,72 @@
   <footer>
     <p>&copy; 2026 Silly Goose Woodworking. All rights reserved. Handcrafted &amp; Laser Engraved.</p>
   </footer>
+
+<script>
+    // Handles multi-slide image carousels with timed auto-advance and manual controls
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const prevBtn = carousel.querySelector('.prev-btn');
+      const nextBtn = carousel.querySelector('.next-btn');
+      const intervalTime = parseInt(carousel.dataset.interval, 10) || 15000;
+      let currentIndex = 0;
+      let timer = null;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        currentIndex = index;
+      }
+
+      function nextSlide() {
+        const nextIndex = (currentIndex + 1) % slides.length;
+        showSlide(nextIndex);
+      }
+
+      function prevSlide() {
+        const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(prevIndex);
+      }
+
+      function startAutoTimer() {
+        stopAutoTimer();
+        timer = setInterval(nextSlide, intervalTime);
+      }
+
+      function stopAutoTimer() {
+        if (timer) clearInterval(timer);
+      }
+
+      // Button listeners
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          nextSlide();
+          startAutoTimer(); // Resets the 15s timer on manual interaction
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          prevSlide();
+          startAutoTimer();
+        });
+      }
+
+      // Initialize
+      if (slides.length > 0) {
+        showSlide(0);
+        if (slides.length > 1) {
+          startAutoTimer();
+        } else {
+          // Hide controls if only 1 image exists
+          if (prevBtn) prevBtn.style.display = 'none';
+          if (nextBtn) nextBtn.style.display = 'none';
+        }
+      }
+    });
+  </script>
+
 
 </body>
 </html>
