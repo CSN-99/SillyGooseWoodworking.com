@@ -807,7 +807,7 @@
         <!-- CONTACT FORM -->
         <form class="contact-form" id="contactForm">
           <!-- Web3Forms Access Key: Replace with your actual key from web3forms.com -->
-          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+          <input type="hidden" name="access_key" value="eebadce9-82e8-46d6-9163-69a1daad1a79">
           <input type="checkbox" name="botcheck" style="display: none;">
 
           <div>
@@ -961,8 +961,7 @@
       }
     });
 
-    // =================================================================
-    // ASYNCHRONOUS WEB3FORMS SUBMISSION
+  // ASYNCHRONOUS WEB3FORMS SUBMISSION
     // =================================================================
     const contactForm = document.getElementById('contactForm');
     const formResult = document.getElementById('formResult');
@@ -972,7 +971,9 @@
       e.preventDefault();
 
       const accessKeyInput = contactForm.querySelector('input[name="access_key"]');
-      if (!accessKeyInput || accessKeyInput.value === 'eebadce9-82e8-46d6-9163-69a1daad1a79' || accessKeyInput.value === 'eebadce9-82e8-46d6-9163-69a1daad1a79') {
+      
+      // Validates that the input exists and has a value entered in HTML
+      if (!accessKeyInput || accessKeyInput.value.trim() === '') {
         formResult.style.color = '#d32f2f';
         formResult.textContent = 'Please configure your Web3Forms access key before submitting.';
         return;
