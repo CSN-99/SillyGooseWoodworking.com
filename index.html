@@ -16,7 +16,6 @@
   <style>
     /* =================================================================
        STYLE GUIDE DESIGN TOKENS
-       Adjust brand colors, font rules, and spacing here.
     ================================================================== */
     :root {
       --bg-primary: #fafafa;
@@ -83,12 +82,11 @@
       gap: 1rem;
     }
 
-    /* Header Logo Image Styling: Constrained dimensions prevent huge renders */
     .logo-img {
       width: 52px;
       height: 52px;
       object-fit: cover;
-      border-radius: 50%; /* Rounded crop to match circular badge profile */
+      border-radius: 50%;
       flex-shrink: 0;
       border: 1px solid var(--border-color);
     }
@@ -237,7 +235,7 @@
       margin-top: 0.5rem;
     }
 
-/* =================================================================
+    /* =================================================================
        CAROUSEL / SLIDER STYLES
     ================================================================== */
     .carousel {
@@ -271,7 +269,6 @@
       pointer-events: auto;
     }
 
-    /* Carousel Navigation Buttons */
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -409,6 +406,81 @@
     }
 
     /* =================================================================
+       LIGHTBOX STYLING & INTERACTION
+    ================================================================== */
+    .lightbox-target {
+      cursor: zoom-in;
+    }
+
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(17, 17, 17, 0.88);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+      cursor: zoom-out;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-dialog {
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: default;
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-caption {
+      font-family: var(--font-body);
+      color: #fafafa;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 2.2rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      color: var(--accent-wood);
+      transform: scale(1.1);
+    }
+
+    /* =================================================================
        CONTACT SECTION & FORM
     ================================================================== */
     .contact-wrapper {
@@ -538,11 +610,10 @@
   <header>
     <nav class="navbar">
       <a href="#" class="brand-link">
-        <!-- Brand Logo: Linked directly to repository image file -->
         <img 
           src="https://raw.githubusercontent.com/CSN-99/SillyGooseWoodworking.com/refs/heads/main/SillyGooseLogo_Master.jpg" 
           alt="Silly Goose Woodworking Logo" 
-          class="logo-img"
+          class="logo-img lightbox-target"
         >
         <div class="brand-name">Silly Goose<br><span>Woodworking</span></div>
       </a>
@@ -551,7 +622,6 @@
         <li><a href="#about">About</a></li>
         <li><a href="#collection">Collection</a></li>
         <li><a href="#contact">Contact</a></li>
-        <!-- INSTRUCTION: Update this link with your actual Etsy URL when ready -->
         <li><a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline-etsy btn-sm">Etsy Shop (Coming Soon)</a></li>
       </ul>
     </nav>
@@ -584,7 +654,7 @@
       <div class="about-card">
         <p>Welcome to <strong>Silly Goose Woodworking</strong>! We specialize in handcrafted wooden lanterns, featuring seasonal and custom interchangeable faceplates. We also craft home decor, custom coasters, gift card ornaments, and boxes for keepsakes or any occasion. Every piece is crafted with care, combining quality woodworking with precision laser cutting and engraving. We would love to make something for you!</p>
         <br>
-        <p>Custom orders are handled through email, while our suite of standard products is available through our Etsy shop.</p>
+        <p>Custom orders are through email, while our suite of standard products is available through our Etsy shop.</p>
       </div>
     </section>
 
@@ -597,25 +667,32 @@
 
       <div class="grid">
 
-        <!-- <!-- =================================================================
-             ITEM 1: WOODEN LANTERNS (CAROUSEL / GALLERY)
-             - Auto-rotates every 15 seconds.
-             - Includes Next / Prev navigation buttons.
-             - Add more <img> tags inside .carousel-track to expand the gallery.
-        ================================================================== -->
+        <!-- ITEM 1: WOODEN LANTERNS -->
         <article class="card">
           <div class="carousel" data-interval="15000">
             <div class="carousel-track">
               <!-- Slide 1 -->
-              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_1.jpg?raw=true" 
-                   alt="Custom Wooden Lantern - View 1" 
-                   class="carousel-slide active" 
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Lantern_Halloween.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - Halloween" 
+                   class="carousel-slide active lightbox-target" 
                    onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
 
               <!-- Slide 2 -->
-              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/HalloweenLanters_2.jpg?raw=true" 
-                   alt="Custom Wooden Lantern - View 2" 
-                   class="carousel-slide" 
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Lantern_DiaDeLosMuertos.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - DiaDeLosMuertos" 
+                   class="carousel-slide lightbox-target" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+               
+              <!-- Slide 3 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Lantern_Thanksgiving.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - Thanksgiving" 
+                   class="carousel-slide lightbox-target" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+               
+              <!-- Slide 4 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Lantern_Christmas.jpg?raw=true" 
+                   alt="Custom Wooden Lantern - Christmas" 
+                   class="carousel-slide lightbox-target" 
                    onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
             </div>
 
@@ -627,45 +704,51 @@
           <div class="card-body">
             <h3 class="card-title">1. Custom Wooden Lanterns &amp; Faceplates</h3>
             <p class="card-text">Our signature wooden lanterns feature interchangeable faceplates for every occasion.
-            <br>
-            <br>We ship seasonally approprate themes by default, but if you're looking for something different or want to get ahead of the holidays, reach out though the contact form below!
-            <br>
-            <br><B>Current Season: Halloween!  Ships with Ghost, Jack O'Lantern, Witch on Broom</B>
+            <br><br>These lanterns flat pack for storage when not in use. Lanterns come as untreated ceader and basswood, ready for varnish or paint to make them your own. 
+            <br><br>Each Lantern comes with 1 lantern frame, 1 electric LED candle, 3 faceplates per selected package, and 1 blank plate for the back.  </b>
             </p>
             <div class="tag-container">
               <span class="tag">Halloween</span>
-              <span class="tag">Christmas</span>
-              <span class="tag">Tabletop RPG</span>
-              <span class="tag">Custom</span>
+              <span class="tag">Dia De Los Muertos</span>
+			  <span class="tag">Thanksgiving</span>
+			  <span class="tag">Christmas</span>
+			  		  
+            <!--  <span class="tag">Tabletop RPG</span>
+              <span class="tag">Custom</span>-->
             </div>
             <div class="card-actions">
               <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
-              <!-- INSTRUCTION: Add direct Etsy product link once available -->
               <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
             </div>
           </div>
         </article>
 
-
-        <!-- <!-- =================================================================
-             ITEM 2: WOODEN LANTERNS FACEPLATES (CAROUSEL / GALLERY)
-             - Auto-rotates every 15 seconds.
-             - Includes Next / Prev navigation buttons.
-             - Add more <img> tags inside .carousel-track to expand the gallery.
-        ================================================================== -->
+        <!-- ITEM 2: WOODEN LANTERNS FACEPLATES -->
         <article class="card">
           <div class="carousel" data-interval="15000">
             <div class="carousel-track">
               <!-- Slide 1 -->
-              <img src="TBD"
-                   alt="Custom Wooden Lantern - View 1" 
-                   class="carousel-slide active" 
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Faceplate_Halloween.jpg?raw=true" 
+                   alt="Haloween Faceplate Pack" 
+                   class="carousel-slide active lightbox-target" 
                    onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
 
               <!-- Slide 2 -->
-              <img src="TBD"
-                   alt="Custom Wooden Lantern - View 2" 
-                   class="carousel-slide" 
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Faceplate_DiaDeLosMuertos.jpg?raw=true" 
+                   alt="Dia De Los Muertos Faceplate Pack" 
+                   class="carousel-slide lightbox-target" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+				   
+			  <!-- Slide 3 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Faceplate_Thanksgiving.jpg?raw=true" 
+                   alt="Thanksgiving Faceplate Pack"  
+                   class="carousel-slide active lightbox-target" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+
+              <!-- Slide 4 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Faceplate_Christmas.jpg?raw=true" 
+                   alt="Christmas Faceplate Pack" 
+                   class="carousel-slide lightbox-target" 
                    onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
             </div>
 
@@ -675,41 +758,53 @@
           </div>
 
           <div class="card-body">
-            <h3 class="card-title">2. Custom Wooden Lantern Faceplace Packages</h3>
-            <p class="card-text"> We ship with seasonally approprate packs when purchasing lanterns, but offer additional packages to extend your use and enjoyment!
-            Choose from Halloween, Christmas, Easter, and D&amp;D themes, or request your own custom theme!</p>
+            <h3 class="card-title">2. Lantern Faceplate Packages</h3>
+            <p class="card-text">We offer additional packages to extend your use and enjoyment of our holiday Lanterns!</b>
+			<br><br>Choose from our pre-designed packages to enhance your holiday decor, or request your own custom theme!
+			<br><br>Each Faceplate pack comes with 3 faceplates per selected package.  </b></p>
             <div class="tag-container">
-              <span class="tag">Halloween</span>
-              <span class="tag">Christmas</span>
-              <span class="tag">Tabletop RPG</span>
-              <span class="tag">Custom</span>
+			<span class="tag">Halloween</span>
+              <span class="tag">Dia De Los Muertos</span>
+			  <span class="tag">Thanksgiving</span>
+			  <span class="tag">Christmas</span>
             </div>
             <div class="card-actions">
               <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
-              <!-- INSTRUCTION: Add direct Etsy product link once available -->
               <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
             </div>
           </div>
         </article>
 
+        <!-- ITEM 3: Lantern Frame -->
+       <article class="card">
+          <div class="carousel" data-interval="15000">
+            <div class="carousel-track">
+              <!-- Slide 1 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Lantern_NoFaceplates2.jpg?raw=true" 
+                   alt="Lantern no faceplate assembled" 
+                   class="carousel-slide active lightbox-target" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
 
-        <!-- =================================================================
-             ITEM 3: COASTERS
-             To update the image, replace the 'src' link below.
-        ================================================================== -->
-        <article class="card">
-          <div class="card-img-wrapper">
-            <img src="https://drive.google.com/thumbnail?id=1e-A3GqbvdPxwlsXPtDu2WuS9bfnYWLIw&sz=w800" 
-                 alt="Custom Coasters" 
-                 class="card-img" 
-                 onerror="this.src='https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=600&q=80'">
+              <!-- Slide 2 -->
+              <img src="https://github.com/CSN-99/SillyGooseWoodworking.com/blob/main/Images/Lantern_NoFaceplates1.jpg?raw=true" 
+                   alt="Lantern no faceplate disassembled" 
+                   class="carousel-slide lightbox-target" 
+                   onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80'">
+				   
+			
+            <!-- Navigation Controls -->
+            <button type="button" class="carousel-btn prev-btn" aria-label="Previous Slide">&lsaquo;</button>
+            <button type="button" class="carousel-btn next-btn" aria-label="Next Slide">&rsaquo;</button>
+          </div>onerror="this.src='https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=600&q=80'">
           </div>
           <div class="card-body">
-            <h3 class="card-title">3. Custom Engraved Coasters</h3>
-            <p class="card-text">Handcrafted coaster 4-packs made from premium hardwoods with detailed laser engraving and durable protective finishes. Perfect for gifts or personal collections.</p>
+            <h3 class="card-title">3. Lantern Frame</h3>
+            <p class="card-text">Take advantage of all your holiday themed faceplates at once with additional lantern frames!
+			<br><br> Each Lantern comes with 1 lantern frame, 1 electric LED candle, and 1 blank plate for the back. 
+			</p>
             <div class="tag-container">
-              <span class="tag">Laser Engraved</span>
-              <span class="tag">Set of 4</span>
+            <!--span class="tag">Laser Engraved</span>
+              <span class="tag">Set of 4</span>-->
             </div>
             <div class="card-actions">
               <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
@@ -717,36 +812,9 @@
             </div>
           </div>
         </article>
-
-        
-        <!-- =================================================================
-             TEMPLATE: ADDING A NEW CARD
-             Copy and paste this card block directly to add more items to your grid.
-        ================================================================== -->
-        <!-- 
-        <article class="card">
-          <div class="card-img-wrapper">
-            <img src="YOUR_IMAGE_URL_HERE" alt="Item Title" class="card-img">
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">3. New Item Title</h3>
-            <p class="card-text">Item description goes here.</p>
-            <div class="tag-container">
-              <span class="tag">Tag 1</span>
-              <span class="tag">Tag 2</span>
-            </div>
-            <div class="card-actions">
-              <a href="#contact" class="btn btn-primary btn-sm">Inquire / Order</a>
-              <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Etsy</a>
-            </div>
-          </div>
-        </article>
-        -->
 
       </div>
     </section>
-
-
 
     <!-- CONTACT & ORDER INQUIRIES -->
     <section id="contact">
@@ -759,10 +827,8 @@
         <div class="contact-info">
           <h3>Let's build something unique.</h3>
           <p>Have an idea for a custom set of lantern faceplates, personalized coasters, or a laser-engraved gift? Send a note and let's bring it to life.
-<br>
-<br>
-Don't worry about attaching images or pictures yet, we'll reach out to you with follow up questions and make sure that we understand your needs first.
-</p>
+          <br><br>
+          Don't worry about attaching images or pictures yet, we'll reach out to you with follow up questions and make sure that we understand your needs first.</p>
           
           <ul class="info-list">
             <li>
@@ -774,7 +840,6 @@ Don't worry about attaching images or pictures yet, we'll reach out to you with 
             <li>
               <span class="info-label">Online Store</span>
               <span class="info-value">
-                <!-- INSTRUCTION: Replace href with your actual Etsy shop link when published -->
                 <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer">Etsy Storefront (Coming Soon) &rarr;</a>
               </span>
             </li>
@@ -783,12 +848,7 @@ Don't worry about attaching images or pictures yet, we'll reach out to you with 
           <a href="mailto:sillygoosewoodworking@gmail.com" class="btn btn-secondary">Open Default Mail App</a>
         </div>
 
-        <!-- HTML Form Setup
-             For GitHub Pages hosting, static forms cannot send mail directly without a backend service.
-             You can use Formspree (https://formspree.io) by changing action to your endpoint:
-             action="https://formspree.io/f/YOUR_ENDPOINT_HERE"
-        -->
-<form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm">
           <div>
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Jane Doe" required>
@@ -798,7 +858,6 @@ Don't worry about attaching images or pictures yet, we'll reach out to you with 
             <input type="email" id="email" name="email" placeholder="jane@example.com" required>
           </div>
           <div>
-            <!-- Dedicated Subject Line Field -->
             <label for="subject">Subject</label>
             <input type="text" id="subject" name="subject" placeholder="Custom Order / General Inquiry" required>
           </div>
@@ -814,13 +873,24 @@ Don't worry about attaching images or pictures yet, we'll reach out to you with 
   </main>
 
   <!-- =================================================================
+       LIGHTBOX MODAL
+  ================================================================== -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close enlarged image">&times;</button>
+    <div class="lightbox-dialog">
+      <img src="" alt="" class="lightbox-image" id="lightboxImg">
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </div>
+
+  <!-- =================================================================
        FOOTER
   ================================================================== -->
   <footer>
     <p>&copy; 2026 Silly Goose Woodworking. All rights reserved. Handcrafted &amp; Laser Engraved.</p>
   </footer>
 
-<script>
+  <script>
     // Handles multi-slide image carousels with timed auto-advance and manual controls
     document.querySelectorAll('.carousel').forEach(carousel => {
       const slides = carousel.querySelectorAll('.carousel-slide');
@@ -856,35 +926,84 @@ Don't worry about attaching images or pictures yet, we'll reach out to you with 
         if (timer) clearInterval(timer);
       }
 
-      // Button listeners
       if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
+        nextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
           nextSlide();
-          startAutoTimer(); // Resets the 15s timer on manual interaction
+          startAutoTimer();
         });
       }
 
       if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
+        prevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
           prevSlide();
           startAutoTimer();
         });
       }
 
-      // Initialize
       if (slides.length > 0) {
         showSlide(0);
         if (slides.length > 1) {
           startAutoTimer();
         } else {
-          // Hide controls if only 1 image exists
           if (prevBtn) prevBtn.style.display = 'none';
           if (nextBtn) nextBtn.style.display = 'none';
         }
       }
     });
-  </script>
 
+    // =================================================================
+    // LIGHTBOX HANDLER
+    // =================================================================
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightboxCaption.textContent = alt || '';
+      lightboxModal.classList.add('active');
+      lightboxModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden'; // Lock page scrolling
+    }
+
+    function closeLightbox() {
+      lightboxModal.classList.remove('active');
+      lightboxModal.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+      lightboxCaption.textContent = '';
+      document.body.style.overflow = ''; // Restore page scrolling
+    }
+
+    // Attach click listeners to all elements designated as lightbox targets
+    document.querySelectorAll('.lightbox-target').forEach(img => {
+      img.addEventListener('click', (e) => {
+        // Prevent opening empty or unresolved placeholder images
+        if (img.getAttribute('src') === 'TBD' || !img.currentSrc) return;
+        openLightbox(img.currentSrc, img.getAttribute('alt'));
+      });
+    });
+
+    // Close when clicking the close button
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    // Close when clicking outside the dialog window
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        closeLightbox();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>
